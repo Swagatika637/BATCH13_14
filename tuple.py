@@ -26,3 +26,5 @@ tup = ("swagatika")
 print(tup.index("g"))         
 print(tup.index("g"))         #index method
 print(tup.count("a"))         #count method
+
+hi swagatika 
