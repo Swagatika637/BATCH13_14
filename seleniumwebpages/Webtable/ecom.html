@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>E‑Commerce Data Table</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <h1>E‑Commerce Data Table</h1>
+  <table id="ecomTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Product Name</th>
+        <th>Date</th>
+        <th>Price (₹)</th>
+        <th>Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be injected by JavaScript -->
+    </tbody>
+  </table>
+
+  <script>
+    const names = ["Abhilash", "Vivekananda", "Snoophy", "Daya", "Enole", "Swagatika", "Guddia", "Hrusikesh"];
+    const streets = Array.from({ length: 100 }, (_, i) => `${100 + i} MG Road, Citytown`);
+    const products = ["Widget A", "Gadget B", "Thingamajig C", "Doohickey D", "Gizmo E"];
+
+    function randomDate(start, end) {
+      const diff = end.getTime() - start.getTime();
+      const newMs = start.getTime() + Math.random() * diff;
+      return new Date(newMs);
+    }
+
+    function formatDate(date) {
+      return date.toISOString().split('T')[0];
+    }
+
+    const tbody = document.querySelector("#ecomTable tbody");
+    const ROWS = 1200;
+
+    for (let i = 0; i < ROWS; i++) {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const address = streets[Math.floor(Math.random() * streets.length)];
+      const product = products[Math.floor(Math.random() * products.length)];
+      const date = randomDate(new Date(2024, 0, 1), new Date(2025, 11, 31));
+      const price = (Math.random() * (500 - 10) + 10).toFixed(2);
+      const month = date.toLocaleString("default", { month: "long" });
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${name}</td>
+        <td>${address}</td>
+        <td>${product}</td>
+        <td>${formatDate(date)}</td>
+        <td>${price}</td>
+        <td>${month}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  </script>
+</body>
+</html>

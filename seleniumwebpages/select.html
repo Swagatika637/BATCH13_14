@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Select Dropdown</title>
+  <style>
+    select {
+      width: 200px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Select Multiple Fruits</h1>
+  <form action="#" method="post" onsubmit="handleSubmit(event)">
+    <label for="fruits">Choose fruits:</label><br>
+    <select name="fruits" id="fruits" multiple size="5">
+      <option value="apple">Apple</option>
+      <option value="orange">Orange</option>
+      <option value="banana">Banana</option>
+      <option value="grape">Grape</option>
+      <option value="mango">Mango</option>
+    </select><br><br>
+
+    <!-- ✅ Submit button -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // prevents page reload
+
+      const select = document.getElementById('fruits');
+      const selected = Array.from(select.selectedOptions).map(option => option.value);
+      alert('You selected: ' + selected.join(', '));
+    }
+  </script>
+</body>
+</html>
